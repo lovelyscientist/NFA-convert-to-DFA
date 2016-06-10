@@ -8,7 +8,34 @@ class NFA {
         }
 
         conversationToDFA () {
+
+            var normalizeStates = () => {
+                for (var state in this.states) {
+                    if (!this.states[state]["$"]) {
+                        this.states[state]["$"] = state;
+                    } else {
+                        if (typeof this.states[state]["$"] === "object") {
+                            if (this.states[state]["$"].indexOf(state) === -1) {
+                                this.states[state]["$"].push(state);
+                            }
+                        }  else {
+                            var existingState = this.states[state]["$"];
+                            this.states[state]["$"] = [];
+                            if (existingState !== state) {
+                                this.states[state]["$"].push(state);
+                            }
+                            this.states[state]["$"].push(existingState);
+                        }
+                    }
+
+                }
+            }
+
 			var createNewStatesStore = () => {
+
+                normalizeStates();
+                console.log(this.states);
+
                 var looopedStates = [];
                 let newStore = {};
                 let state = this.start;
@@ -56,16 +83,18 @@ class NFA {
                         
                     }
                 }   
-
-                // rename all list states to new single states
+                 // rename all list states to new single states
                 var renamedStore = {};
                 var newNames = [];
                 var counter = 0;
                 var namesHash = {};
+                var finishStates = this.finishes;
+                var startState = this.start;
                 var names = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
                 for (var i = 0; i < Object.keys(newStore).length; i++) {
                     newNames.push(names[i]);
                 }
+
 
                 // creating namesHash 
                 for (var key in newStore) {
@@ -75,13 +104,37 @@ class NFA {
                     }
                 }
 
+                // prepare finish states
+    
+                for (var key in newStore) {
+                    this.finishes.forEach(f => {
+                        if (key.includes(f) && key !== f) {
+                            this.finishes.push(key);
+                        }
+                    });
+                    
+                }
+
+                
+                //rename finish states
+
+                for (let i=0; i< finishStates.length; i++) {
+                    finishStates[i] = namesHash[finishStates[i]];
+                }
+               
+                //renameStartState
+                startState = namesHash[startState];
+
+                
+
+                // register new store
                 for (var key in newStore) {
                     renamedStore[key] = {};
                 }
 
+                // rename values
                 for (var key in newStore) {
                     for (var letter  in newStore[key]) {
-                        //console.log(newStore[key]);
                         if (namesHash[newStore[key][letter]]) {
                             renamedStore[key][letter] = namesHash[newStore[key][letter]];
                         }
@@ -89,16 +142,21 @@ class NFA {
 
                 }
 
+                // create new keys
                 for (var key in newStore) {
                      renamedStore[namesHash[key]] = renamedStore[key];
                      delete renamedStore[key];   
                 }
 
-                console.log(renamedStore);
-                console.log(namesHash);
-
+                return {
+                    states: renamedStore,
+                    finish: finishStates,
+                    start: startState
+                }
             }
 
-            createNewStatesStore();
-    	}
+            var res = createNewStatesStore();
+            console.log(res);
+            return res;
+            }
 }   		
