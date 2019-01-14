@@ -1,7 +1,7 @@
 # Simple app to converte NFA to DFA and check if the string applies to a rule.
 
 
-### Breif definition about DFA and NFA.
+## Breif definition about DFA and NFA.
 ---
 **[DFA](https://en.wikipedia.org/wiki/Deterministic_finite_automaton)**: A DFA is a finite state machine that accepts or rejects strings of symbols and only produce a uniques computation (or run) of the automation for each input string. *Deterministic* refers to the uniqueness of the computation. In search of the simplest models to capture finite-state machines.
 <br>![DFA](https://github.com/hirocsingh/NFA-convert-to-DFA/blob/master/DFA.png)
@@ -37,3 +37,24 @@
 >5. F is a set of final state/states of Q (F ⊆ Q).
 
 *Learn more about NFA [here](https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton).*
+
+
+## Conversion of NFA to DFA:
+---
+>Every DFA is an NFA, but not vice-versa. There is an equivalent DFA for every NFA.
+
+The transition funtion **δ** is the only difference, otherwise everything else remains the same between a DFA and an NFA.
+
+For example:
+
+Let **L** be a set of all strings over (0,1) that starts with '0'.
+
+>L = { Set of all strings over (0,1) that starts with '0' }
+>
+> Therefore, ∑ = {0,1}
+
+**NFA**:<br>![NFA](https://github.com/hirocsingh/NFA-convert-to-DFA/blob/master/NFA-to-DFA-1.png)
+<br>
+
+![DFA](https://github.com/hirocsingh/NFA-convert-to-DFA/blob/master/NFA-to-DFA-2.png)
+
