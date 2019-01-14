@@ -1,4 +1,4 @@
-# Simple app to converte NFA to DFA and check if the string applies to a rule.
+# Simple app to convert NFA to DFA and check if the string applies to a rule.
 
 
 ## Breif definition about DFA and NFA.
