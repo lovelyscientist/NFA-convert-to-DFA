@@ -1,0 +1,32 @@
+{
+  "name": "automata",
+  "version": "1.0.0",
+  "description": "NFA to DFA Converter",
+  "main": "index.js",
+  "dependencies": {
+    "node": "^11.6.0",
+    "server": "^1.0.18"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hirocsingh/NFA-convert-to-DFA.git"
+  },
+  "keywords": [
+    "NFA",
+    "DFA",
+    "NFA",
+    "to",
+    "DFA"
+  ],
+  "author": "Avinash Singh, Vlada Tishchenko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hirocsingh/NFA-convert-to-DFA/issues"
+  },
+  "homepage": "https://github.com/hirocsingh/NFA-convert-to-DFA#readme"
+}
