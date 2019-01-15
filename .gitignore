@@ -4,7 +4,7 @@
 /out-tsc
 
 # dependencies
-C:\Users\avinashs\Documents\GitHub\NFA-convert-to-DFA-Forked\automata\node_modules
+/node_modules
 
 # IDEs and editors
 /.idea
